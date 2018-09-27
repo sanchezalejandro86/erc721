@@ -1,0 +1,30 @@
+{
+  "name": "erc721",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanchezalejandro86/erc721.git"
+  },
+  "keywords": [
+    "ethereum",
+    "erc721"
+  ],
+  "author": "Alejandro Sánchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanchezalejandro86/erc721/issues"
+  },
+  "homepage": "https://github.com/sanchezalejandro86/erc721#readme",
+  "dependencies": {
+    "truffle": "^4.1.14",
+    "zeppelin-solidity": "^1.12.0"
+  }
+}
