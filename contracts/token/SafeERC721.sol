@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
-import "zeppelin-solidity/contracts/token/ERC721/ERC721Basic.sol";
 import "zeppelin-solidity/contracts/token/ERC721/ERC721.sol";
+import "zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol";
 
 /**
  * @title SafeERC721
@@ -11,17 +11,17 @@ import "zeppelin-solidity/contracts/token/ERC721/ERC721.sol";
  */
 library SafeERC721 {
     function safeTransfer(
-        ERC721Basic _token,
+        ERC721Token _token,
         address _to,
-        uint256 _value
+        uint256 _tokenId
     )
     internal
     {
-        require(_token.transfer(_to, _value));
+        require(_token.addTokenTo(_to, _tokenId));
     }
 
     function safeTransferFrom(
-        ERC721 _token,
+        ERC721Token _token,
         address _from,
         address _to,
         uint256 _value

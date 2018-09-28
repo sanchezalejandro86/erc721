@@ -53,12 +53,13 @@ contract TimedCrowdsaleERC721 is CrowdsaleERC721 {
      */
     function _preValidatePurchase(
         address _beneficiary,
-        uint256 _weiAmount
+        uint256 _weiAmount,
+        uint256 _tokenId
     )
     internal
     onlyWhileOpen
     {
-        super._preValidatePurchase(_beneficiary, _weiAmount);
+        super._preValidatePurchase(_beneficiary, _weiAmount, _tokenId);
     }
 
 }

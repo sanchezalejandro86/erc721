@@ -17,24 +17,27 @@ contract PostDeliveryCrowdsaleERC721 is TimedCrowdsaleERC721 {
      */
     function withdrawTokens() public {
         require(hasClosed());
-        uint256 amount = balances[msg.sender];
-        require(amount > 0);
-        balances[msg.sender] = null;
-        _deliverTokens(msg.sender, amount);
+        uint256[] _tokenIds = balances[msg.sender];
+        balances[msg.sender] = new uint256[](0); //FIXME
+
+        for (uint i=0; i<_tokenIds.length; i++) {
+            _deliverTokens(msg.sender, _tokenIds[i]);
+        }
+
     }
 
     /**
      * @dev Overrides parent by storing balances instead of issuing tokens right away.
      * @param _beneficiary Token purchaser
-     * @param _tokenAmount Amount of tokens purchased
+     * @param _tokenId Id of the token purchased
      */
     function _processPurchase(
         address _beneficiary,
-        uint256 _tokenAmount
+        uint256 _tokenId
     )
     internal
     {
-        balances[_beneficiary] = balances[_beneficiary].add(_tokenAmount);
+        balances[_beneficiary] = balances[_beneficiary].push(_tokenId);
     }
 
 }

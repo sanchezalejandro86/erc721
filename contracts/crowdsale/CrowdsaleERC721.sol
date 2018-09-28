@@ -1,13 +1,13 @@
 pragma solidity ^0.4.24;
 
-import "zeppelin-solidity/contracts/token/ERC721/ERC721.sol";
 import "../token/SafeERC721.sol";
+import "../token/DemoToken.sol";
 
 contract CrowdsaleERC721{
-    using SafeERC721 for ERC721;
+    using SafeERC721 for DemoToken;
 
     // The token being sold
-    ERC721 public token;
+    DemoToken public token;
 
     // Address where funds are collected
     address public wallet;
@@ -15,25 +15,49 @@ contract CrowdsaleERC721{
     // Amount of wei raised
     uint256 public weiRaised;
 
+    struct Token {
+        uint256 id;
+        string name;
+        uint256 priceWei;
+    }
+
+    event NewDemoToken(uint tokenId, string name, uint256 priceWei);
+
+    Token[] public tokenArray;
+    mapping(uint256 => Token) tokens;
+
+    function createToken(string _name, uint256 _priceWei) public onlyOwner {
+        uint256 lastId = token.mint(_name);
+        Token token = Token(lastId, _name, _priceWei);
+        tokenArray.push(token);
+        tokens[lastId] = token;
+
+        NewDemoToken(lastId, _name, _priceWei);
+    }
+
+    function getTokenList() public view returns (Token[]){
+        return tokenArray;
+    }
+
     /**
      * Event for token purchase logging
      * @param purchaser who paid for the tokens
      * @param beneficiary who got the tokens
      * @param value weis paid for purchase
-     * @param amount amount of tokens purchased
+     * @param _tokenId Id of the token purchased
      */
     event TokenPurchase(
         address indexed purchaser,
         address indexed beneficiary,
         uint256 value,
-        uint256 amount
+        uint256 _tokenId
     );
 
     /**
      * @param _wallet Address where collected funds will be forwarded to
      * @param _token Address of the token being sold
      */
-    constructor(address _wallet, ERC20 _token) public {
+    constructor(address _wallet, DemoToken _token) public {
         require(_wallet != address(0));
         require(_token != address(0));
 
@@ -49,20 +73,22 @@ contract CrowdsaleERC721{
      * @dev fallback function ***DO NOT OVERRIDE***
      */
     function () external payable {
-        buyTokens(msg.sender);
+        require(
+            false,
+            "You must specified a Token ID."
+        );
     }
 
     /**
    * @dev low level token purchase ***DO NOT OVERRIDE***
    * @param _beneficiary Address performing the token purchase
    */
-    function buyTokens(address _beneficiary) public payable {
+    function buyToken(uint256 _tokenId) public payable {
+
+        address _beneficiary = msg.sender;
 
         uint256 weiAmount = msg.value;
-        _preValidatePurchase(_beneficiary, weiAmount);
-
-        // calculate token amount to be created
-        uint256 tokens = _getTokenAmount(weiAmount);
+        _preValidatePurchase(_beneficiary, weiAmount, _tokenId);
 
         // update state
         weiRaised = weiRaised.add(weiAmount);
@@ -72,7 +98,7 @@ contract CrowdsaleERC721{
             msg.sender,
             _beneficiary,
             weiAmount,
-            tokens
+            _tokenId
         );
 
         _updatePurchasingState(_beneficiary, weiAmount);
@@ -91,12 +117,15 @@ contract CrowdsaleERC721{
      */
     function _preValidatePurchase(
         address _beneficiary,
-        uint256 _weiAmount
+        uint256 _weiAmount,
+        uint256 _tokenId
     )
     internal
     {
         require(_beneficiary != address(0));
         require(_weiAmount != 0);
+        require(tokens[_tokenId]);
+        require(tokens[_tokenId].priceWei == _weiAmount);
     }
 
     /**
@@ -120,11 +149,11 @@ contract CrowdsaleERC721{
      */
     function _deliverTokens(
         address _beneficiary,
-        uint256 _tokenAmount
+        uint256 _tokenId
     )
     internal
     {
-        token.safeTransfer(_beneficiary, _tokenAmount);
+        token.safeTransferFrom(msg.sender, _beneficiary, _tokenId);
     }
 
     /**
@@ -134,11 +163,11 @@ contract CrowdsaleERC721{
    */
     function _processPurchase(
         address _beneficiary,
-        uint256 _tokenAmount
+        uint256 _tokenId
     )
     internal
     {
-        _deliverTokens(_beneficiary, _tokenAmount);
+        _deliverTokens(_beneficiary, _tokenId);
     }
 
     /**
@@ -153,17 +182,6 @@ contract CrowdsaleERC721{
     internal
     {
         // optional override
-    }
-
-    /**
-     * @dev Override to extend the way in which ether is converted to tokens.
-     * @param _weiAmount Value in wei to be converted into tokens
-     * @return Number of tokens that can be purchased with the specified _weiAmount
-     */
-    function _getTokenAmount(uint256 _weiAmount)
-    internal view returns (uint256)
-    {
-        return _weiAmount.mul(rate);
     }
 
     /**
