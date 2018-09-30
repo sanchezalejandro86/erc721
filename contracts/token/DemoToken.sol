@@ -12,7 +12,7 @@ contract DemoToken is ERC721Token, Ownable{
     public {
     }
 
-    function mint(string _name) public onlyOwner view returns (uint256){
+    function mint() public onlyOwner returns (uint256){
         lastId = lastId.add(1);
         super._mint(msg.sender, lastId);
         return lastId;

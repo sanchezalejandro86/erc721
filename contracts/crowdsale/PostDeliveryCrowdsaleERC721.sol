@@ -17,7 +17,7 @@ contract PostDeliveryCrowdsaleERC721 is TimedCrowdsaleERC721 {
      */
     function withdrawTokens() public {
         require(hasClosed());
-        uint256[] _tokenIds = balances[msg.sender];
+        uint256[] storage _tokenIds = balances[msg.sender];
         balances[msg.sender] = new uint256[](0); //FIXME
 
         for (uint i=0; i<_tokenIds.length; i++) {
@@ -37,7 +37,7 @@ contract PostDeliveryCrowdsaleERC721 is TimedCrowdsaleERC721 {
     )
     internal
     {
-        balances[_beneficiary] = balances[_beneficiary].push(_tokenId);
+        balances[_beneficiary].push(_tokenId);
     }
 
 }

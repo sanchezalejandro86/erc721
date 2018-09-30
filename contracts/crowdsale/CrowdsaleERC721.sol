@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
 
-import "../token/SafeERC721.sol";
 import "../token/DemoToken.sol";
 
-contract CrowdsaleERC721{
-    using SafeERC721 for DemoToken;
+contract CrowdsaleERC721 is Ownable{
+
+    using SafeMath for uint256;
 
     // The token being sold
     DemoToken public token;
@@ -19,6 +19,7 @@ contract CrowdsaleERC721{
         uint256 id;
         string name;
         uint256 priceWei;
+        bool available;
     }
 
     event NewDemoToken(uint tokenId, string name, uint256 priceWei);
@@ -27,16 +28,21 @@ contract CrowdsaleERC721{
     mapping(uint256 => Token) tokens;
 
     function createToken(string _name, uint256 _priceWei) public onlyOwner {
-        uint256 lastId = token.mint(_name);
-        Token token = Token(lastId, _name, _priceWei);
-        tokenArray.push(token);
-        tokens[lastId] = token;
+        uint256 lastId = token.mint();
+        Token memory _token = Token(lastId, _name, _priceWei, true);
+        tokenArray.push(_token);
+        tokens[lastId] = _token;
 
-        NewDemoToken(lastId, _name, _priceWei);
+        emit NewDemoToken(lastId, _name, _priceWei);
     }
 
-    function getTokenList() public view returns (Token[]){
-        return tokenArray;
+    function getNumberofTokens() public view returns (uint256){
+        return tokenArray.length;
+    }
+
+    function getTokenByIndex(uint256 index) public view returns (uint256, string, uint256){
+        Token storage _token = tokenArray[index];
+        return (_token.id, _token.name, _token.priceWei);
     }
 
     /**
@@ -81,7 +87,7 @@ contract CrowdsaleERC721{
 
     /**
    * @dev low level token purchase ***DO NOT OVERRIDE***
-   * @param _beneficiary Address performing the token purchase
+   * @param _tokenId Id of the token being purchased
    */
     function buyToken(uint256 _tokenId) public payable {
 
@@ -93,7 +99,7 @@ contract CrowdsaleERC721{
         // update state
         weiRaised = weiRaised.add(weiAmount);
 
-        _processPurchase(_beneficiary, tokens);
+        _processPurchase(_beneficiary, _tokenId);
         emit TokenPurchase(
             msg.sender,
             _beneficiary,
@@ -124,7 +130,7 @@ contract CrowdsaleERC721{
     {
         require(_beneficiary != address(0));
         require(_weiAmount != 0);
-        require(tokens[_tokenId]);
+        require(tokens[_tokenId].available);
         require(tokens[_tokenId].priceWei == _weiAmount);
     }
 
@@ -145,7 +151,7 @@ contract CrowdsaleERC721{
     /**
      * @dev Source of tokens. Override this method to modify the way in which the crowdsale ultimately gets and sends its tokens.
      * @param _beneficiary Address performing the token purchase
-     * @param _tokenAmount Number of tokens to be emitted
+     * @param _tokenId Id of token to be emitted
      */
     function _deliverTokens(
         address _beneficiary,
@@ -159,7 +165,7 @@ contract CrowdsaleERC721{
     /**
    * @dev Executed when a purchase has been validated and is ready to be executed. Not necessarily emits/sends tokens.
    * @param _beneficiary Address receiving the tokens
-   * @param _tokenAmount Number of tokens to be purchased
+   * @param _tokenId Id of token to be purchased
    */
     function _processPurchase(
         address _beneficiary,
