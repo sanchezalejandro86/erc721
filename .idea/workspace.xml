@@ -2,35 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ff19e13-a994-4a14-a4f7-320049aba67b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/helpers/latestTime.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/helpers/web3.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/contracts/fake/Fake.sol" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/contracts/fake/Receiver.sol" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/AddressUtils.json" afterPath="$PROJECT_DIR$/build/contracts/AddressUtils.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/CrowdsaleERC721.json" afterPath="$PROJECT_DIR$/build/contracts/CrowdsaleERC721.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/DemoCrowdsale.json" afterPath="$PROJECT_DIR$/build/contracts/DemoCrowdsale.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/DemoToken.json" afterPath="$PROJECT_DIR$/build/contracts/DemoToken.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC165.json" afterPath="$PROJECT_DIR$/build/contracts/ERC165.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Basic.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Basic.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721BasicToken.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721BasicToken.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Enumerable.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Enumerable.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Metadata.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Metadata.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Receiver.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Receiver.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Token.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Token.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/MintableTokenERC721.json" afterPath="$PROJECT_DIR$/build/contracts/MintableTokenERC721.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Ownable.json" afterPath="$PROJECT_DIR$/build/contracts/Ownable.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/PostDeliveryCrowdsaleERC721.json" afterPath="$PROJECT_DIR$/build/contracts/PostDeliveryCrowdsaleERC721.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/SafeMath.json" afterPath="$PROJECT_DIR$/build/contracts/SafeMath.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/SupportsInterfaceWithLookup.json" afterPath="$PROJECT_DIR$/build/contracts/SupportsInterfaceWithLookup.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/TimedCrowdsaleERC721.json" afterPath="$PROJECT_DIR$/build/contracts/TimedCrowdsaleERC721.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol" afterPath="$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" afterPath="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/crowdsale.js" afterPath="$PROJECT_DIR$/test/crowdsale.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/demotoken.js" afterPath="$PROJECT_DIR$/test/demotoken.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/helpers/time.js" afterPath="$PROJECT_DIR$/test/helpers/time.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,28 +15,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="crowdsale.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-550">
-              <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demotoken.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/demotoken.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-756">
-              <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -155,84 +108,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contracts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contracts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="token" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contracts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crowdsale" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -785,12 +660,12 @@
       <workItem from="1538075767754" duration="1281000" />
       <workItem from="1538144249448" duration="9915000" />
       <workItem from="1538329735300" duration="12861000" />
-      <workItem from="1538351556883" duration="28839000" />
+      <workItem from="1538351556883" duration="29567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52896000" />
+    <option name="totallyTimeSpent" value="53624000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1368" height="725" extended-state="6" />
@@ -1248,18 +1123,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/demotoken.js">
+    <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-756">
-          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+        <state relative-caret-position="-250">
+          <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
+    <entry file="file://$PROJECT_DIR$/test/demotoken.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-550">
-          <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+        <state relative-caret-position="-756">
+          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
           <folding />
         </state>
       </provider>
