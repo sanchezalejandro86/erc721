@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ff19e13-a994-4a14-a4f7-320049aba67b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contracts/fake/Receiver.sol" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contracts/token/MintableTokenERC721.sol" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/migrations/3_crowdsale_migration.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/crowdsale.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fake.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/helpers/expectThrow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/helpers/time.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/helpers/latestTime.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/helpers/web3.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/contracts/fake/Fake.sol" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/contracts/fake/Receiver.sol" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/AddressUtils.json" afterPath="$PROJECT_DIR$/build/contracts/AddressUtils.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/CrowdsaleERC721.json" afterPath="$PROJECT_DIR$/build/contracts/CrowdsaleERC721.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/DemoCrowdsale.json" afterPath="$PROJECT_DIR$/build/contracts/DemoCrowdsale.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/DemoToken.json" afterPath="$PROJECT_DIR$/build/contracts/DemoToken.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC165.json" afterPath="$PROJECT_DIR$/build/contracts/ERC165.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721.json" />
@@ -23,20 +19,18 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Metadata.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Metadata.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Receiver.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Receiver.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC721Token.json" afterPath="$PROJECT_DIR$/build/contracts/ERC721Token.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Fake.json" afterPath="$PROJECT_DIR$/build/contracts/Fake.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/MintableTokenERC721.json" afterPath="$PROJECT_DIR$/build/contracts/MintableTokenERC721.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Ownable.json" afterPath="$PROJECT_DIR$/build/contracts/Ownable.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/PostDeliveryCrowdsaleERC721.json" afterPath="$PROJECT_DIR$/build/contracts/PostDeliveryCrowdsaleERC721.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/SafeMath.json" afterPath="$PROJECT_DIR$/build/contracts/SafeMath.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/SupportsInterfaceWithLookup.json" afterPath="$PROJECT_DIR$/build/contracts/SupportsInterfaceWithLookup.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/TimedCrowdsaleERC721.json" afterPath="$PROJECT_DIR$/build/contracts/TimedCrowdsaleERC721.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol" afterPath="$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol" afterPath="$PROJECT_DIR$/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/fake/Fake.sol" afterPath="$PROJECT_DIR$/contracts/fake/Fake.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/token/DemoToken.sol" afterPath="$PROJECT_DIR$/contracts/token/DemoToken.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/truffle-config.js" afterPath="$PROJECT_DIR$/truffle-config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" afterPath="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/crowdsale.js" afterPath="$PROJECT_DIR$/test/crowdsale.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/demotoken.js" afterPath="$PROJECT_DIR$/test/demotoken.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/helpers/time.js" afterPath="$PROJECT_DIR$/test/helpers/time.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,61 +42,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="crowdsale.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-550">
+              <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="demotoken.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/demotoken.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="26" column="34" lean-forward="false" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ERC721BasicToken.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721BasicToken.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="166" column="11" lean-forward="false" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="crowdsale.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="114" column="49" lean-forward="false" selection-start-line="114" selection-start-column="49" selection-end-line="114" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="time.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/helpers/time.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CrowdsaleERC721.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="157" column="13" lean-forward="false" selection-start-line="157" selection-start-column="13" selection-end-line="157" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostDeliveryCrowdsaleERC721.sol" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+            <state relative-caret-position="-756">
+              <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -119,6 +73,7 @@
       <find>mint</find>
       <find>supply</find>
       <find>priceWei</find>
+      <find>set</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,22 +95,23 @@
         <option value="$PROJECT_DIR$/contracts/token/SafeERC721.sol" />
         <option value="$PROJECT_DIR$/migrations/2_token_migration.js" />
         <option value="$PROJECT_DIR$/migrations/3_fake_migration.js" />
-        <option value="$PROJECT_DIR$/test/demotoken.js" />
         <option value="$PROJECT_DIR$/test/demotoken-async.js" />
-        <option value="$PROJECT_DIR$/test/helpers/latestTime.js" />
         <option value="$PROJECT_DIR$/migrations/3_crowdsale_migration.js" />
-        <option value="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" />
-        <option value="$PROJECT_DIR$/contracts/token/DemoToken.sol" />
         <option value="$PROJECT_DIR$/contracts/token/MintableTokenERC721.sol" />
         <option value="$PROJECT_DIR$/contracts/fake/Receiver.sol" />
         <option value="$PROJECT_DIR$/contracts/fake/Fake.sol" />
         <option value="$PROJECT_DIR$/test/fake.js" />
         <option value="$PROJECT_DIR$/test/helpers/expectThrow.js" />
         <option value="$PROJECT_DIR$/truffle-config.js" />
-        <option value="$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol" />
-        <option value="$PROJECT_DIR$/test/helpers/time.js" />
-        <option value="$PROJECT_DIR$/test/crowdsale.js" />
         <option value="$PROJECT_DIR$/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol" />
+        <option value="$PROJECT_DIR$/test/helpers/web3.js" />
+        <option value="$PROJECT_DIR$/test/helpers/latestTime.js" />
+        <option value="$PROJECT_DIR$/test/helpers/time.js" />
+        <option value="$PROJECT_DIR$/contracts/token/DemoToken.sol" />
+        <option value="$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol" />
+        <option value="$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol" />
+        <option value="$PROJECT_DIR$/test/demotoken.js" />
+        <option value="$PROJECT_DIR$/test/crowdsale.js" />
       </list>
     </option>
   </component>
@@ -226,24 +182,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="erc721" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="contracts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -280,7 +218,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fake" />
+              <option name="myItemId" value="crowdsale" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -294,11 +232,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="contracts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crowdsale" />
+              <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -851,16 +785,15 @@
       <workItem from="1538075767754" duration="1281000" />
       <workItem from="1538144249448" duration="9915000" />
       <workItem from="1538329735300" duration="12861000" />
-      <workItem from="1538351556883" duration="16408000" />
+      <workItem from="1538351556883" duration="28839000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40465000" />
+    <option name="totallyTimeSpent" value="52896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1368" height="725" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -876,7 +809,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26136363" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26136363" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -933,49 +866,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Receiver.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/introspection/SupportsInterfaceWithLookup.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/introspection/ERC165.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/TokenTimelock.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/TokenTimelock.sol" />
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/emission/AllowanceCrowdsale.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/validation/WhitelistedCrowdsale.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -983,6 +878,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
           <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="31" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -990,6 +886,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -997,6 +894,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,31 +906,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/ERC20.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/BasicToken.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/StandardToken.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1070,38 +948,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/2_token_migration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/web3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/latestTime.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/increaseTime.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -1110,50 +956,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/3_crowdsale_migration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/ether.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="1" column="51" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/crowdsale/TimedCrowdsale.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="41" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/truffle/build/chain.bundled.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="903" column="4215257" lean-forward="false" selection-start-line="903" selection-start-column="4215257" selection-end-line="903" selection-end-column="4215257" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="166" column="11" lean-forward="false" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/Crowdsale.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1178,14 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/token/MintableTokenERC721.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="57" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1234,18 +1032,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/token/DemoToken.sol">
+    <entry file="file://$PROJECT_DIR$/test/helpers/expectThrow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/demotoken.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/truffle/build/chain.bundled.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="26" column="34" lean-forward="false" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+        <state relative-caret-position="188">
+          <caret line="903" column="713000" lean-forward="false" selection-start-line="903" selection-start-column="713000" selection-end-line="903" selection-end-column="713000" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/web3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/latestTime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/pify/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/increaseTime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="39" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/helpers/advanceToBlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/helpers/web3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/helpers/latestTime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/helpers/time.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="47" column="16" lean-forward="false" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/test/crowdsale/TimedCrowdsale.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/migrations/2_token_migration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/migrations/3_crowdsale_migration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/contracts/DemoCrowdsale.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1258,26 +1152,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/token/MintableTokenERC721.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-460">
+          <caret line="13" column="58" lean-forward="false" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="26" column="22" lean-forward="false" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/token/DemoToken.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Receiver.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="3" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/contracts/crowdsale/DemoCrowdsale.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/helpers/expectThrow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/helpers/time.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        <state relative-caret-position="220">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1290,26 +1208,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="114" column="49" lean-forward="false" selection-start-line="114" selection-start-column="49" selection-end-line="114" selection-end-column="49" />
+        <state relative-caret-position="160">
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/ERC20.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/Crowdsale.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2400">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/ERC20/BasicToken.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/crowdsale/CrowdsaleERC721.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="157" column="13" lean-forward="false" selection-start-line="157" selection-start-column="13" selection-end-line="157" selection-end-column="13" />
+        <state relative-caret-position="500">
+          <caret line="175" column="12" lean-forward="true" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol">
+    <entry file="file://$PROJECT_DIR$/test/demotoken.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        <state relative-caret-position="-756">
+          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/crowdsale.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-550">
+          <caret line="104" column="5" lean-forward="false" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
           <folding />
         </state>
       </provider>

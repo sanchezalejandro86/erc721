@@ -1,4 +1,5 @@
-const { duration, timeTravel } = require('./helpers/time');
+const { duration, increaseTime, advanceBlock } = require('./helpers/time');
+const { latestTime } = require('./helpers/latestTime');
 const expectThrow = require('./helpers/expectThrow');
 const DemoCrowdsale = artifacts.require("DemoCrowdsale");
 const DemoToken = artifacts.require("DemoToken");
@@ -13,12 +14,14 @@ contract('DemoCrowdsale', async (accounts) => {
     let tokenId;
 
     before(async () => {
+        await advanceBlock();
+
         let openingTime = Math.floor(new Date().getTime() / 1000)
+   //      let openingTime = (await latestTime()) + duration.seconds(10);
         let closingTime = openingTime + duration.days(90);
         tokenContract = await DemoToken.new('DEMO Token', 'DEMO', {from: owner});
 
         contract = await DemoCrowdsale.new(wallet, tokenContract.address, openingTime, closingTime, {from: owner});
-        //contract = await DemoCrowdsale.deployed();
     });
 
     describe("After Crowdsale creation", async ()  => {
@@ -51,11 +54,13 @@ contract('DemoCrowdsale', async (accounts) => {
             watcher = contract.NewDemoToken();
             result = await contract.addToken(tokenId, 'DEMO', priceWei, {from: owner});
             let newTokenEvent = await watcher.get();
-
             assert.equal(newTokenEvent.length, 1);
+
             assert.equal(newTokenEvent[0].args.tokenId.valueOf(), tokenId);
             assert.equal(newTokenEvent[0].args.name.valueOf(), 'DEMO');
             assert.equal(newTokenEvent[0].args.priceWei.valueOf(), priceWei);
+
+            result = await tokenContract.safeTransferFrom(owner, contract.address, tokenId, {from: owner});
         });
 
         it("should have 1 token minted", async () => {
@@ -83,15 +88,18 @@ contract('DemoCrowdsale', async (accounts) => {
             assert.equal(events[0].args.value.valueOf(), priceWei);
         });
 
-        it("token should not have been transfered to beneficiary while crowdsale open", async () => {
+        it("crowdsale contract should be the owner of the token", async () => {
             let balance = await tokenContract.balanceOf.call(owner);
-            assert.equal(balance.toNumber(), 1);
+            assert.equal(balance.toNumber(), 0);
 
             balance = await tokenContract.balanceOf.call(beneficiary);
             assert.equal(balance.toNumber(), 0);
 
+            balance = await tokenContract.balanceOf.call(contract.address);
+            assert.equal(balance.toNumber(), 1);
+
             let _owner = await tokenContract.ownerOf.call(tokenId);
-            assert.equal(_owner, owner);
+            assert.equal(_owner, contract.address);
         });
 
         it("balance should have increased wei ammount", async () => {
@@ -106,13 +114,27 @@ contract('DemoCrowdsale', async (accounts) => {
 
     describe("Close Crowdsale", async ()  => {
         it("should be closed", async () => {
-            timeTravel(duration.days(90)); //after 3 months, crowdsale is closed.
+            increaseTime(duration.days(91)); //after 3 months, crowdsale is closed.
 
             let hasClosed = await contract.hasClosed.call();
             assert.equal(hasClosed, true);
         });
         it("should transfer the token", async () => {
-            let watcher = contract.TokenDelivered();
+
+            // let watcher = tokenContract.Transfer();
+            // let result = await tokenContract.mint({from: owner});
+            // let transfers = await watcher.get();
+            //
+            // tokenId = transfers[0].args._tokenId;
+            //
+            // result = await contract.addToken(tokenId, 'DEMO', priceWei, {from: owner});
+            // //result = await tokenContract.setApprovalForAll(contract.address, true, {from: owner});
+            // result = await tokenContract.safeTransferFrom(owner, contract.address, tokenId, {from: owner});
+            // result = await contract.buyToken(tokenId, {from: beneficiary, value: priceWei});
+            // increaseTime(duration.days(91));
+
+
+            watcher = contract.TokenDelivered();
             await contract.withdrawTokens({from: beneficiary});
             let events = await watcher.get();
 
@@ -128,12 +150,5 @@ contract('DemoCrowdsale', async (accounts) => {
     });
 
 });
-
-//addToken(string _name, uint256 _priceWei) public onlyOwner
-//getNumberofTokens():uint256
-//getTokenByIndex(uint256 index) public view returns (uint256, string, uint256)
-//buyToken(uint256 _tokenId) public payable
-//hasClosed():bool
-//withdrawTokens()
 
 // _forwardFunds();?

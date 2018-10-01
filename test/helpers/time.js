@@ -7,16 +7,43 @@ const duration = {
     years: function (val) { return val * this.days(365); },
 };
 
-const jsonrpc = '2.0';
-const id = 0;
-const send = (method, params = []) => web3.currentProvider.send({ id, jsonrpc, method, params });
+function increaseTime (duration) {
+    const id = Date.now();
 
-const timeTravel = async seconds => {
-    await send('evm_increaseTime', [seconds]);
-    await send('evm_mine');
-};
+    return new Promise((resolve, reject) => {
+        web3.currentProvider.sendAsync({
+            jsonrpc: '2.0',
+            method: 'evm_increaseTime',
+            params: [duration],
+            id: id,
+        }, err1 => {
+            if (err1) return reject(err1);
+
+            web3.currentProvider.sendAsync({
+                jsonrpc: '2.0',
+                method: 'evm_mine',
+                id: id + 1,
+            }, (err2, res) => {
+                return err2 ? reject(err2) : resolve(res);
+            });
+        });
+    });
+}
+
+function advanceBlock () {
+    return new Promise((resolve, reject) => {
+        web3.currentProvider.sendAsync({
+            jsonrpc: '2.0',
+            method: 'evm_mine',
+            id: Date.now(),
+        }, (err, res) => {
+            return err ? reject(err) : resolve(res);
+        });
+    });
+}
 
 module.exports = {
     duration,
-    timeTravel
+    increaseTime,
+    advanceBlock
 };

@@ -161,7 +161,7 @@ contract CrowdsaleERC721 is Ownable{
     )
     internal
     {
-        token.safeTransferFrom(msg.sender, _beneficiary, _tokenId);
+        token.safeTransferFrom(address(this), _beneficiary, _tokenId);
     }
 
     /**

@@ -7,9 +7,8 @@ contract('DemoToken', async (accounts) => {
     let beneficiary = accounts[1];
     let tokenId;
 
-    beforeEach(async () => {
-        //contract = await DemoToken.new('DEMO Token', 'DEMO', {from: owner});
-        contract = await DemoToken.deployed();
+    before(async () => {
+        contract = await DemoToken.new('DEMO Token', 'DEMO', {from: owner});
     });
 
     describe("Before tokens minted", async ()  => {
