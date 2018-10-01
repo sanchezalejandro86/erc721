@@ -12,16 +12,20 @@ contract PostDeliveryCrowdsaleERC721 is TimedCrowdsaleERC721 {
 
     mapping(address => uint256[]) public balances;
 
+    event TokenDelivered(address to, uint256 tokenId);
+
     /**
      * @dev Withdraw tokens only after crowdsale ends.
      */
     function withdrawTokens() public {
-        require(hasClosed());
+        require(hasClosed(), "El Crowdsale no está cerrado");
+        require(balances[msg.sender].length > 0, "El sender no tiene tokens");
         uint256[] storage _tokenIds = balances[msg.sender];
-        balances[msg.sender] = new uint256[](0); //FIXME
+        //balances[msg.sender] = new uint256[](0); //FIXME
 
         for (uint i=0; i<_tokenIds.length; i++) {
             _deliverTokens(msg.sender, _tokenIds[i]);
+            emit TokenDelivered(msg.sender, _tokenIds[i]);
         }
 
     }

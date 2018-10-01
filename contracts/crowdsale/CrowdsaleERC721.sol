@@ -27,16 +27,18 @@ contract CrowdsaleERC721 is Ownable{
     Token[] public tokenArray;
     mapping(uint256 => Token) tokens;
 
-    function createToken(string _name, uint256 _priceWei) public onlyOwner {
-        uint256 lastId = token.mint();
-        Token memory _token = Token(lastId, _name, _priceWei, true);
-        tokenArray.push(_token);
-        tokens[lastId] = _token;
+    function addToken(uint256 _tokenId, string _name, uint256 _priceWei) public onlyOwner {
+        require(token.exists(_tokenId));
+        require(token.ownerOf(_tokenId) == msg.sender);
 
-        emit NewDemoToken(lastId, _name, _priceWei);
+        Token memory _token = Token(_tokenId, _name, _priceWei, true);
+        tokenArray.push(_token);
+        tokens[_tokenId] = _token;
+
+        emit NewDemoToken(_tokenId, _name, _priceWei);
     }
 
-    function getNumberofTokens() public view returns (uint256){
+    function getNumberOfTokens() public view returns (uint256){
         return tokenArray.length;
     }
 
@@ -107,7 +109,7 @@ contract CrowdsaleERC721 is Ownable{
             _tokenId
         );
 
-        _updatePurchasingState(_beneficiary, weiAmount);
+        _updatePurchasingState(_beneficiary, weiAmount, _tokenId);
 
         _forwardFunds();
         _postValidatePurchase(_beneficiary, weiAmount);
@@ -183,11 +185,12 @@ contract CrowdsaleERC721 is Ownable{
    */
     function _updatePurchasingState(
         address _beneficiary,
-        uint256 _weiAmount
+        uint256 _weiAmount,
+        uint256 _tokenId
     )
     internal
     {
-        // optional override
+        tokens[_tokenId].available = false;
     }
 
     /**

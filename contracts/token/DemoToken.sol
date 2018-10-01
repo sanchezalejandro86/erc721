@@ -1,9 +1,9 @@
 pragma solidity ^0.4.24;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol";
+import "./MintableTokenERC721.sol";
 
-contract DemoToken is ERC721Token, Ownable{
+contract DemoToken is MintableTokenERC721{
 
     uint256 lastId = 1 ** 5;
 
@@ -12,9 +12,15 @@ contract DemoToken is ERC721Token, Ownable{
     public {
     }
 
-    function mint() public onlyOwner returns (uint256){
+    function mint()
+    public
+    hasMintPermission
+    canMint
+    returns (uint256)
+    {
         lastId = lastId.add(1);
         super._mint(msg.sender, lastId);
+        emit Mint(msg.sender, lastId);
         return lastId;
     }
 
