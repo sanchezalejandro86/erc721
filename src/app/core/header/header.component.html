@@ -12,16 +12,22 @@
 
         <!-- Main Menu -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
                 <!-- Divider -->
                 <li><a>&nbsp;</a></li>
                 <!-- End Divider -->
 
                 <li>
-                    <a href="#" class="active"><i class="fa fa-coins"></i> Tokens</a>
+                    <a [routerLink]="['/profile']" routerLinkActive="active"><i class="fa fa-coins"></i> Tokens</a>
                 </li>
                 <li>
-                    <a href="#" class="active"><i class="fas fa-hand-holding-usd"></i> Crowdsales</a>
+                    <a [routerLink]="['/profile']" routerLinkActive="active"><i class="fas fa-hand-holding-usd"></i> Crowdsales</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a [routerLink]="['/profile']" routerLinkActive="active"><i class="fa fa-user"></i> Mi Cuenta</a>
                 </li>
 
             </ul>

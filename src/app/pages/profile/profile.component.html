@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Cuenta:
+      {{account}}
+      <span class="separator"></span>
+    </div>
+    <div class="panel-body">
+      <h3>Mis Tokens</h3>
+      <ul class="list-group">
+        <li *ngFor="let t of tokens" class="list-group-item">{{t}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

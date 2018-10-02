@@ -5,6 +5,9 @@ import {AppComponent} from "./app.component";
 import {SharedModule} from "./core/shared/shared.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {HomeModule} from "./pages/home/home.module";
+import {Web3Service} from "./core/shared/web3.service";
+import {ProfileModule} from "./pages/profile/profile.module";
+import {ErrorConsoleService} from "./core/error-console/error-console.service";
 
 @NgModule({
   declarations: [
@@ -14,9 +17,13 @@ import {HomeModule} from "./pages/home/home.module";
     BrowserModule,
     SharedModule,
     HomeModule,
+    ProfileModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+      Web3Service,
+      ErrorConsoleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,4 +24,11 @@ contract DemoToken is MintableTokenERC721{
         return lastId;
     }
 
+    function tokensOfOwner(address _owner)
+    public
+    view
+    returns (uint256[])
+    {
+        return ownedTokens[_owner];
+    }
 }

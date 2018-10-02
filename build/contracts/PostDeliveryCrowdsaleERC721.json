@@ -425,7 +425,7 @@
         "contractDependencies": [
           343,
           572,
-          999
+          1012
         ],
         "contractKind": "contract",
         "documentation": "@title PostDeliveryCrowdsale\n@dev Crowdsale that locks tokens from withdrawal until it ends.",
@@ -435,7 +435,7 @@
           482,
           572,
           343,
-          999
+          1012
         ],
         "name": "PostDeliveryCrowdsaleERC721",
         "nodeType": "ContractDefinition",
@@ -447,10 +447,10 @@
               "id": 394,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 913,
+              "referencedDeclaration": 926,
               "src": "245:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$913",
+                "typeIdentifier": "t_contract$_SafeMath_$926",
                 "typeString": "library SafeMath"
               }
             },
@@ -665,10 +665,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2133,
-                        2134
+                        2146,
+                        2147
                       ],
-                      "referencedDeclaration": 2134,
+                      "referencedDeclaration": 2147,
                       "src": "494:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -734,7 +734,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2130,
+                                "referencedDeclaration": 2143,
                                 "src": "574:3:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -840,10 +840,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2133,
-                        2134
+                        2146,
+                        2147
                       ],
-                      "referencedDeclaration": 2134,
+                      "referencedDeclaration": 2147,
                       "src": "557:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -935,7 +935,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2130,
+                        "referencedDeclaration": 2143,
                         "src": "675:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -988,7 +988,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2130,
+                                "referencedDeclaration": 2143,
                                 "src": "825:3:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -1102,7 +1102,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2130,
+                                "referencedDeclaration": 2143,
                                 "src": "884:3:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -1636,7 +1636,7 @@
         "contractDependencies": [
           343,
           572,
-          999
+          1012
         ],
         "contractKind": "contract",
         "documentation": "@title PostDeliveryCrowdsale\n@dev Crowdsale that locks tokens from withdrawal until it ends.",
@@ -1646,7 +1646,7 @@
           482,
           572,
           343,
-          999
+          1012
         ],
         "name": "PostDeliveryCrowdsaleERC721",
         "nodeType": "ContractDefinition",
@@ -1658,10 +1658,10 @@
               "id": 394,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 913,
+              "referencedDeclaration": 926,
               "src": "245:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$913",
+                "typeIdentifier": "t_contract$_SafeMath_$926",
                 "typeString": "library SafeMath"
               }
             },
@@ -1876,10 +1876,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2133,
-                        2134
+                        2146,
+                        2147
                       ],
-                      "referencedDeclaration": 2134,
+                      "referencedDeclaration": 2147,
                       "src": "494:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1945,7 +1945,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2130,
+                                "referencedDeclaration": 2143,
                                 "src": "574:3:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -2051,10 +2051,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2133,
-                        2134
+                        2146,
+                        2147
                       ],
-                      "referencedDeclaration": 2134,
+                      "referencedDeclaration": 2147,
                       "src": "557:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2146,7 +2146,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2130,
+                        "referencedDeclaration": 2143,
                         "src": "675:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2199,7 +2199,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2130,
+                                "referencedDeclaration": 2143,
                                 "src": "825:3:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -2313,7 +2313,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2130,
+                                "referencedDeclaration": 2143,
                                 "src": "884:3:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -2797,5 +2797,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-10-01T19:14:45.448Z"
+  "updatedAt": "2018-10-02T22:06:31.490Z"
 }
