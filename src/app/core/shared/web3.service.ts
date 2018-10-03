@@ -26,6 +26,7 @@ export class Web3Service {
         if (typeof window.web3 !== 'undefined') {
             // Use Mist/MetaMask's provider
             this.web3 = new Web3(window.web3.currentProvider);
+            this.web3.eth.net.getId().then(console.log);
         } else {
             console.log('No web3? You should consider trying MetaMask!');
 

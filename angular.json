@@ -23,11 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap3/dist/js/bootstrap.min.js",
+              "src/assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"
             ]
           },
           "configurations": {

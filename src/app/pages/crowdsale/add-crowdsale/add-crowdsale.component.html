@@ -1,0 +1,46 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a [routerLink]="['/crowdsale']">Crowdsale</a></li>
+    <li class="active">Nueva</li>
+  </ol>
+
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3>Nueva Crowdsale</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div id="datetimepicker_desde" class="input-append date">
+            <input data-format="dd/MM/yyyy hh:mm:ss" type="text">
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="datetimepicker_hasta" class="input-append date">
+            <input data-format="dd/MM/yyyy hh:mm:ss" type="text">
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <h3>Tokens</h3>
+      <table class="table" style="width: 400px">
+        <tr>
+          <th>Token ID</th>
+          <th width="100px">Precio</th>
+        </tr>
+        <tr *ngFor="let t of tokens">
+          <td>{{t}}</td>
+          <td><input type="number" class="form-control"></td>
+        </tr>
+      </table>
+      <a (click)="crearCrowdsale()" class="btn btn-primary pull-right" role="button">Crear</a>
+    </div>
+  </div>
+<div>

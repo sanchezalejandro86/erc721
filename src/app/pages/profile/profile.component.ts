@@ -26,8 +26,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.watchAccount();
     this.web3Service.artifactsToContract(demotoken_artifacts)
-        .then((MetaCoinAbstraction) => {
-          this.DemoToken = MetaCoinAbstraction;
+        .then((DemoTokenAbstraction) => {
+          this.DemoToken = DemoTokenAbstraction;
         });
   }
 
@@ -47,11 +47,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
       console.log(deployedDemoToken);
       console.log('Account', this.account);
       const tokens = await deployedDemoToken.tokensOfOwner.call(this.account);
-      console.log('Found balance: ' + tokens);
+      console.log('Found tokens: ' + tokens);
       this.tokens = tokens;
     } catch (e) {
       console.log(e);
-      this.setStatus('Error getting balance; see log.');
+      this.setStatus('Error getting tokens; see log.');
     }
   }
 
