@@ -21,9 +21,22 @@ export class Web3Service {
         });
     }
 
-    public bootstrapWeb3() {
+    public async bootstrapWeb3() {
         // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-        if (typeof window.web3 !== 'undefined') {
+        // Modern dapp browsers...
+        if (typeof window.ethereum !== 'undefined') {
+            this.web3 = new Web3(window.ethereum);
+            try {
+                // Request account access if needed
+                await window.ethereum.enable();
+                // Acccounts now exposed
+                // this.web3.eth.sendTransaction({/* ... */});
+            } catch (error) {
+                // User denied account access...
+            }
+        }
+        // Legacy dapp browsers...
+        else if (typeof window.web3 !== 'undefined') {
             // Use Mist/MetaMask's provider
             this.web3 = new Web3(window.web3.currentProvider);
             this.web3.eth.net.getId().then(console.log);
@@ -75,5 +88,9 @@ export class Web3Service {
 
             this.ready = true;
         });
+    }
+
+    getAccount(){
+        return this.accounts ? this.accounts[0] : '';
     }
 }

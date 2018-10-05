@@ -1,4 +1,7 @@
 <div class="container">
+  <ol class="breadcrumb">
+    <li class="active">Mi Cuenta</li>
+  </ol>
   <div class="panel panel-default">
     <div class="panel-heading">
       Cuenta:
@@ -8,7 +11,7 @@
     <div class="panel-body">
       <h3>Mis Tokens</h3>
       <ul class="list-group">
-        <li *ngFor="let t of tokens" class="list-group-item">{{t}}</li>
+        <li *ngFor="let t of tokens" class="list-group-item">{{t.id}} - {{t.description}}</li>
       </ul>
     </div>
   </div>

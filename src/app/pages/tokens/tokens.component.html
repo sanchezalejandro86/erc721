@@ -1,3 +1,24 @@
-<p>
-  tokens works!
-</p>
+<div class="container">
+  <ol class="breadcrumb">
+    <li class="active">Tokens</li>
+  </ol>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Token: {{name}} - Símbolo: {{symbol}} <br>
+      Owner: {{owner}}
+    </div>
+    <div class="panel-body">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="name">Descripción</label>
+          <input type="text" id="name" [(ngModel)]="tokenName" name="name" class="form-control">
+        </div>
+        <a (click)="crearToken()" class="btn btn-primary" role="button">Crear</a>
+      </form>
+      <ul class="list-group" style="padding-top: 10px">
+        <li *ngFor="let t of tokens" class="list-group-item">{{t.id}} - {{t.description}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

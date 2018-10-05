@@ -1,0 +1,53 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a [routerLink]="['/crowdsale']">Crowdsale</a></li>
+    <li class="active">Tokens</li>
+  </ol>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Vender Tokens
+    </div>
+    <div class="panel-body">
+      <table class="table">
+        <tr>
+          <th>Id</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Disponible</th>
+          <th>Acción</th>
+        </tr>
+        <tr *ngFor="let t of tokens" >
+          <td>{{t.id}}</td>
+          <td>{{t.description}}</td>
+          <td>{{t.price}}</td>
+          <td>{{t.available ? 'Sí' : 'No'}}</td>
+          <td>
+            <a *ngIf="t.available" (click)="sell(t)" data-toggle="modal" data-target="#myModal">Vender</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Vender Token: {{sellingToken.id}} - {{sellingToken.description}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Indique la dirección ETH de destino:</p>
+        <form>
+          <input type="text" class="form-control" [(ngModel)]="ethReceiver" required name="eth_receiver">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="sellToken()">Confirmar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

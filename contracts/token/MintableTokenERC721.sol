@@ -30,7 +30,7 @@ contract MintableTokenERC721 is ERC721Token, Ownable {
      * @dev Function to mint tokens
      * @return A boolean that indicates if the operation was successful.
      */
-    function mint()
+    function mint(string uri)
     public
     hasMintPermission
     canMint
@@ -38,6 +38,7 @@ contract MintableTokenERC721 is ERC721Token, Ownable {
     {
         uint256 _tokenId = random();
         super._mint(msg.sender, _tokenId);
+        _setTokenURI(_tokenId, uri);
         emit Mint(msg.sender, _tokenId);
         return _tokenId;
     }

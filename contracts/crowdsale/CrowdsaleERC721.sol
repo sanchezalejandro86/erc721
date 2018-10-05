@@ -24,7 +24,7 @@ contract CrowdsaleERC721 is Ownable{
 
     event NewDemoToken(uint tokenId, string name, uint256 priceWei);
 
-    Token[] public tokenArray;
+    uint256[] public tokenArray;
     mapping(uint256 => Token) tokens;
 
     function addToken(uint256 _tokenId, string _name, uint256 _priceWei) public onlyOwner {
@@ -32,7 +32,7 @@ contract CrowdsaleERC721 is Ownable{
         require(token.ownerOf(_tokenId) == msg.sender);
 
         Token memory _token = Token(_tokenId, _name, _priceWei, true);
-        tokenArray.push(_token);
+        tokenArray.push(_tokenId);
         tokens[_tokenId] = _token;
 
         emit NewDemoToken(_tokenId, _name, _priceWei);
@@ -42,9 +42,10 @@ contract CrowdsaleERC721 is Ownable{
         return tokenArray.length;
     }
 
-    function getTokenByIndex(uint256 index) public view returns (uint256, string, uint256){
-        Token storage _token = tokenArray[index];
-        return (_token.id, _token.name, _token.priceWei);
+    function getTokenByIndex(uint256 index) public view returns (uint256, string, uint256, bool){
+        uint256 _tokenId = tokenArray[index];
+        Token storage _token = tokens[_tokenId];
+        return (_token.id, _token.name, _token.priceWei, _token.available);
     }
 
     /**

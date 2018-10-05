@@ -22,4 +22,19 @@ contract DemoCrowdsale is PostDeliveryCrowdsaleERC721, ERC721Receiver{
         return ERC721_RECEIVED;
     }
 
+    function sellToken(uint256 tokenId, address beneficiary) public onlyOwner {
+        require(beneficiary != address(0));
+        require(tokens[tokenId].available);
+
+        _processPurchase(beneficiary, tokenId);
+
+        emit TokenPurchase(
+            msg.sender,
+            beneficiary,
+            0,
+            tokenId
+        );
+
+        _updatePurchasingState(beneficiary, 0, tokenId);
+    }
 }

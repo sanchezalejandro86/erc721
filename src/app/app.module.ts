@@ -8,6 +8,7 @@ import {HomeModule} from "./pages/home/home.module";
 import {Web3Service} from "./core/shared/web3.service";
 import {ProfileModule} from "./pages/profile/profile.module";
 import {ErrorConsoleService} from "./core/error-console/error-console.service";
+import {TokensModule} from "./pages/tokens/tokens.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {ErrorConsoleService} from "./core/error-console/error-console.service";
     SharedModule,
     HomeModule,
     ProfileModule,
+    TokensModule,
     AppRoutingModule
   ],
   providers: [

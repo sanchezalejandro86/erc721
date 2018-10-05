@@ -1,13 +1,32 @@
 <div class="container">
+  <ol class="breadcrumb">
+    <li class="active">Crowdsale</li>
+  </ol>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3>Crowdsales</h3>
     </div>
     <div class="panel-body">
+      <table class="table">
+        <tr>
+          <th>Address</th>
+          <th>Desde</th>
+          <th>Hasta</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+        <tr *ngFor="let c of crowdsales">
+          <td>{{c.address}}</td>
+          <td>{{c.openingTime * 1000 | date:'short'}}</td>
+          <td>{{c.closingTime * 1000 | date:'short'}}</td>
+          <td>{{c.hasClosed ? 'Cerrada' : 'Abierta'}}</td>
+          <td>
+            <a *ngIf="!c.hasClosed" [routerLink]="['/crowdsale/vender', c.address]">Vender Tokens</a>
+            <a *ngIf="c.hasClosed && !c.released" (click)="withdraw(c.address)">Liberar Tokens</a>
+          </td>
+        </tr>
+      </table>
       <a [routerLink]="['/crowdsale/nueva']" class="btn btn-primary pull-right" role="button">Crear nueva</a>
-      <div class="row">
-        <div class="col-md-4"></div>
-      </div>
     </div>
   </div>
 </div>

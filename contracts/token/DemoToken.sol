@@ -12,7 +12,7 @@ contract DemoToken is MintableTokenERC721{
     public {
     }
 
-    function mint()
+    function mint(string uri)
     public
     hasMintPermission
     canMint
@@ -20,6 +20,7 @@ contract DemoToken is MintableTokenERC721{
     {
         lastId = lastId.add(1);
         super._mint(msg.sender, lastId);
+        _setTokenURI(lastId, uri);
         emit Mint(msg.sender, lastId);
         return lastId;
     }
