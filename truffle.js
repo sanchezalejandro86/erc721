@@ -34,5 +34,11 @@ module.exports = {
             network_id: "*", // Match any network id
 			gas: 4698712
         },
+        ganache2: {
+            host: "espinlabs.dynamic-dns.net",
+            port: 7545,
+            network_id: "*", // Match any network id
+			gas: 4698712
+        }
     }
 };
