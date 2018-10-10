@@ -6,9 +6,9 @@ import {Router} from "@angular/router";
 
 declare var $: any;
 declare let require: any;
-const demotoken_artifacts = require('../../../../../build/contracts/DemoToken.json')
+const losktoken_artifacts = require('../../../../../build/contracts/LOSKToken.json')
 const crowdsalelist_artifacts = require('../../../../../build/contracts/CrowdsaleList.json');
-const democrowdsale_artifacts = require('../../../../../build/contracts/DemoCrowdsale.json');
+const loskcrowdsale_artifacts = require('../../../../../build/contracts/LOSKCrowdsale.json');
 
 @Component({
   selector: 'app-add-crowdsale',
@@ -22,8 +22,8 @@ export class AddCrowdsaleComponent implements OnInit, AfterViewInit {
       private router: Router
   ){}
 
-  DemoToken: any;
-  DemoCrowdsale: any;
+  LOSKToken: any;
+  LOSKCrowdsale: any;
   CrowdsaleList: any;
 
   tokens: Token[];
@@ -33,14 +33,14 @@ export class AddCrowdsaleComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.watchAccount();
-    this.web3Service.artifactsToContract(demotoken_artifacts)
-        .then((DemoTokenAbstraction) => {
-          this.DemoToken = DemoTokenAbstraction;
+    this.web3Service.artifactsToContract(losktoken_artifacts)
+        .then((LOSKTokenAbstraction) => {
+          this.LOSKToken = LOSKTokenAbstraction;
           this.refreshTokens();
         });
-    this.web3Service.artifactsToContract(democrowdsale_artifacts)
-        .then((DemoCrowdsaleAbstraction) => {
-          this.DemoCrowdsale = DemoCrowdsaleAbstraction;
+    this.web3Service.artifactsToContract(loskcrowdsale_artifacts)
+        .then((LOSKCrowdsaleAbstraction) => {
+          this.LOSKCrowdsale = LOSKCrowdsaleAbstraction;
     });
     this.web3Service.artifactsToContract(crowdsalelist_artifacts)
         .then((CrowdsaleListAbstraction) => {
@@ -57,12 +57,12 @@ export class AddCrowdsaleComponent implements OnInit, AfterViewInit {
 
   async refreshTokens() {
     try {
-      const deployedDemoToken = await this.DemoToken.deployed();
-      let owner = await deployedDemoToken.owner.call();
-      let _tokens = await deployedDemoToken.tokensOfOwner.call(owner);
+      const deployedLOSKToken = await this.LOSKToken.deployed();
+      let owner = await deployedLOSKToken.owner.call();
+      let _tokens = await deployedLOSKToken.tokensOfOwner.call(owner);
       this.tokens = [];
       for(let i=0; i<_tokens.length; i++){
-        let _description = await deployedDemoToken.tokenURI.call(_tokens[i]);
+        let _description = await deployedLOSKToken.tokenURI.call(_tokens[i]);
         this.tokens.push(new Token(_tokens[i], _description));
       }
     } catch (e) {
@@ -84,22 +84,22 @@ export class AddCrowdsaleComponent implements OnInit, AfterViewInit {
       try {
         console.log({
               account: this.web3Service.getAccount(),
-              token: this.DemoToken.address,
+              token: this.LOSKToken.address,
               openingTime: openingTime,
               closingTime: closingTime
             });
 
-        this.DemoCrowdsale.web3.eth.defaultAccount = this.web3Service.getAccount();
+        this.LOSKCrowdsale.web3.eth.defaultAccount = this.web3Service.getAccount();
 
-        const newDemoCrowsale = await this.DemoCrowdsale.new(
-            this.web3Service.getAccount(), this.DemoToken.address, openingTime, closingTime);
+        const newDemoCrowsale = await this.LOSKCrowdsale.new(
+            this.web3Service.getAccount(), this.LOSKToken.address, openingTime, closingTime);
 
-        const deployedDemoToken = await this.DemoToken.deployed();
+        const deployedLOSKToken = await this.LOSKToken.deployed();
         const owner = this.web3Service.getAccount();
 
         for(let i=0; i<this.tokens.length; i++){
           await newDemoCrowsale.addToken(this.tokens[i].id, this.tokens[i].description, this.tokens[i].price, {from: owner})
-          await deployedDemoToken.safeTransferFrom(owner, newDemoCrowsale.address, this.tokens[i].id, {from: owner, gas: 1000000});
+          await deployedLOSKToken.safeTransferFrom(owner, newDemoCrowsale.address, this.tokens[i].id, {from: owner, gas: 1000000});
         }
 
         const deployedCrowdsaleList = await this.CrowdsaleList.deployed();

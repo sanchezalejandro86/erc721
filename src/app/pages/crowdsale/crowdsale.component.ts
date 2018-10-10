@@ -5,7 +5,7 @@ import {Crowdsale} from "../../core/shared/token.model";
 
 declare let require: any;
 const crowdsalelist_artifacts = require('../../../../build/contracts/CrowdsaleList.json');
-const democrowdsale_artifacts = require('../../../../build/contracts/DemoCrowdsale.json');
+const loskcrowdsale_artifacts = require('../../../../build/contracts/LOSKCrowdsale.json');
 
 @Component({
   selector: 'app-crowdsale',
@@ -21,7 +21,7 @@ export class CrowdsaleComponent implements OnInit {
   ){}
 
   CrowdsaleList: any;
-  DemoCrowdsale: any;
+  LOSKCrowdsale: any;
 
   ngOnInit() {
     this.web3Service.artifactsToContract(crowdsalelist_artifacts)
@@ -30,9 +30,9 @@ export class CrowdsaleComponent implements OnInit {
 
           this.refreshCrowdsales();
         });
-    this.web3Service.artifactsToContract(democrowdsale_artifacts)
-        .then((DemoCrowdsaleAbstraction) => {
-          this.DemoCrowdsale = DemoCrowdsaleAbstraction;
+    this.web3Service.artifactsToContract(loskcrowdsale_artifacts)
+        .then((LOSKCrowdsaleAbstraction) => {
+          this.LOSKCrowdsale = LOSKCrowdsaleAbstraction;
         });
   }
 
@@ -43,7 +43,7 @@ export class CrowdsaleComponent implements OnInit {
       this.crowdsales = [];
       for(let i=0; i<totalCrowsales; i++){
         let _crowdsale = await deployedCrowdsaleList.getCrowdsaleByIndex.call(i);
-        let _crowdsaleContract = await this.DemoCrowdsale.at(_crowdsale);
+        let _crowdsaleContract = await this.LOSKCrowdsale.at(_crowdsale);
         this.crowdsales.push(
             new Crowdsale(
                 _crowdsale,
@@ -63,7 +63,7 @@ export class CrowdsaleComponent implements OnInit {
 
   async withdraw(crowdsale: string){
     try {
-      let _crowdsaleContract = await this.DemoCrowdsale.at(crowdsale);
+      let _crowdsaleContract = await this.LOSKCrowdsale.at(crowdsale);
       await _crowdsaleContract.withdrawTokens({from: this.web3Service.getAccount(), gas: 1000000});
     } catch (e) {
       console.log(e);

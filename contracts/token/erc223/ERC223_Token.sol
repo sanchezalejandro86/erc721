@@ -2,6 +2,8 @@ pragma solidity ^0.4.9;
 
 import "./Receiver_Interface.sol";
 import "./ERC223_Interface.sol";
+import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "./ERC20.sol";
 
 /**
 * ERC223 token by Dexaran
@@ -9,32 +11,13 @@ import "./ERC223_Interface.sol";
 * https://github.com/Dexaran/ERC223-token-standard
 */
 
+contract ERC223Token is ERC223, ERC20 {
 
-/* https://github.com/LykkeCity/EthereumApiDotNetCore/blob/master/src/ContractBuilder/contracts/token/SafeMath.sol */
-contract SafeMath {
-    uint256 constant public MAX_UINT256 =
-    0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-
-    function safeAdd(uint256 x, uint256 y) pure internal returns (uint256 z) {
-        if (x > MAX_UINT256 - y) revert();
-        return x + y;
-    }
-
-    function safeSub(uint256 x, uint256 y) pure internal returns (uint256 z) {
-        if (x < y) revert();
-        return x - y;
-    }
-
-    function safeMul(uint256 x, uint256 y) pure internal returns (uint256 z) {
-        if (y == 0) return 0;
-        if (x > MAX_UINT256 / y) revert();
-        return x * y;
-    }
-}
-
-contract ERC223Token is ERC223, SafeMath {
+    using SafeMath for uint;
 
     mapping(address => uint) balances;
+
+    mapping (address => mapping (address => uint256)) internal allowed;
 
     string public name;
     string public symbol;
@@ -65,8 +48,8 @@ contract ERC223Token is ERC223, SafeMath {
 
         if(isContract(_to)) {
             if (balanceOf(msg.sender) < _value) revert();
-            balances[msg.sender] = safeSub(balanceOf(msg.sender), _value);
-            balances[_to] = safeAdd(balanceOf(_to), _value);
+            balances[msg.sender] = balanceOf(msg.sender).sub(_value);
+            balances[_to] = balanceOf(_to).add(_value);
             assert(_to.call.value(0)(bytes4(keccak256(_custom_fallback)), msg.sender, _value, _data));
             emit Transfer(msg.sender, _to, _value, _data);
             return true;
@@ -115,20 +98,29 @@ contract ERC223Token is ERC223, SafeMath {
 
     //function that is called when transaction target is an address
     function transferToAddress(address _to, uint _value, bytes _data) private returns (bool success) {
-        if (balanceOf(msg.sender) < _value) revert();
-        balances[msg.sender] = safeSub(balanceOf(msg.sender), _value);
-        balances[_to] = safeAdd(balanceOf(_to), _value);
-        emit Transfer(msg.sender, _to, _value, _data);
-        return true;
+        return transferToAddress(msg.sender, _to, _value, _data);
     }
 
     //function that is called when transaction target is a contract
     function transferToContract(address _to, uint _value, bytes _data) private returns (bool success) {
-        if (balanceOf(msg.sender) < _value) revert();
-        balances[msg.sender] = safeSub(balanceOf(msg.sender), _value);
-        balances[_to] = safeAdd(balanceOf(_to), _value);
+        return transferToContract(msg.sender, _to, _value, _data);
+    }
+
+    function transferToAddress(address _from, address _to, uint _value, bytes _data) private returns (bool success) {
+        if (balanceOf(_from) < _value) revert();
+        balances[_from] = balanceOf(_from).sub(_value);
+        balances[_to] = balanceOf(_to).add(_value);
+        emit Transfer(msg.sender, _to, _value, _data);
+        return true;
+    }
+
+
+    function transferToContract(address _from, address _to, uint _value, bytes _data) private returns (bool success) {
+        if (balanceOf(_from) < _value) revert();
+        balances[_from] = balanceOf(_from).sub(_value);
+        balances[_to] = balanceOf(_to).add(_value);
         ContractReceiver receiver = ContractReceiver(_to);
-        receiver.tokenFallback(msg.sender, _value, _data);
+        receiver.tokenFallback(_from, _value, _data);
         emit Transfer(msg.sender, _to, _value, _data);
         return true;
     }
@@ -136,5 +128,67 @@ contract ERC223Token is ERC223, SafeMath {
 
     function balanceOf(address _owner) public view returns (uint balance) {
         return balances[_owner];
+    }
+
+    /**
+     * @dev Transfer tokens from one address to another
+     * @param _from address The address which you want to send tokens from
+     * @param _to address The address which you want to transfer to
+     * @param _value uint256 the amount of tokens to be transferred
+     */
+    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _value
+    )
+    public
+    returns (bool)
+    {
+        require(_value <= balances[_from]);
+        require(_value <= allowed[_from][msg.sender]);
+        require(_to != address(0));
+
+        bytes memory empty;
+
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+
+        if(isContract(_to)) {
+            return transferToContract(_from, _to, _value, empty);
+        }
+        else {
+            return transferToAddress(_from, _to, _value, empty);
+        }
+    }
+
+    /**
+     * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+     * Beware that changing an allowance with this method brings the risk that someone may use both the old
+     * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+     * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     * @param _spender The address which will spend the funds.
+     * @param _value The amount of tokens to be spent.
+     */
+    function approve(address _spender, uint256 _value) public returns (bool) {
+        allowed[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    /**
+     * @dev Function to check the amount of tokens that an owner allowed to a spender.
+     * @param _owner address The address which owns the funds.
+     * @param _spender address The address which will spend the funds.
+     * @return A uint256 specifying the amount of tokens still available for the spender.
+     */
+    function allowance(
+        address _owner,
+        address _spender
+    )
+    public
+    view
+    returns (uint256)
+    {
+        return allowed[_owner][_spender];
     }
 }

@@ -5,7 +5,7 @@ import {ErrorConsoleService} from "../../../core/error-console/error-console.ser
 import {Token} from "../../../core/shared/token.model";
 
 declare let require: any;
-const democrowdsale_artifacts = require('../../../../../build/contracts/DemoCrowdsale.json');
+const loskcrowdsale_artifacts = require('../../../../../build/contracts/LOSKCrowdsale.json');
 
 @Component({
   selector: 'app-sell-tokens',
@@ -14,8 +14,8 @@ const democrowdsale_artifacts = require('../../../../../build/contracts/DemoCrow
 })
 export class SellTokensComponent implements OnInit, OnDestroy {
   private sub: any;
-  DemoCrowdsale: any;
-  deployedDemoCrowdsale: any;
+  LOSKCrowdsale: any;
+  deployedLOSKCrowdsale: any;
   tokens: Token[];
   ethReceiver: string;
   sellingToken: Token = new Token(0, '');
@@ -29,12 +29,12 @@ export class SellTokensComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       let address = params['address'];
 
-      this.web3Service.artifactsToContract(democrowdsale_artifacts)
-        .then(async (DemoCrowdsaleAbstraction) => {
-          this.DemoCrowdsale = DemoCrowdsaleAbstraction;
+      this.web3Service.artifactsToContract(loskcrowdsale_artifacts)
+        .then(async (LOSKCrowdsaleAbstraction) => {
+          this.LOSKCrowdsale = LOSKCrowdsaleAbstraction;
 
           try {
-            this.deployedDemoCrowdsale = await this.DemoCrowdsale.at(address);
+            this.deployedLOSKCrowdsale = await this.LOSKCrowdsale.at(address);
             this.refreshTokens();
           } catch (e) {
             console.log(e);
@@ -45,10 +45,10 @@ export class SellTokensComponent implements OnInit, OnDestroy {
   }
 
   async refreshTokens(){
-    let totalTokens = await this.deployedDemoCrowdsale.getNumberOfTokens.call();
+    let totalTokens = await this.deployedLOSKCrowdsale.getNumberOfTokens.call();
     this.tokens = [];
     for(let i=0; i<totalTokens; i++){
-      let _token = await this.deployedDemoCrowdsale.getTokenByIndex.call(i);
+      let _token = await this.deployedLOSKCrowdsale.getTokenByIndex.call(i);
       console.log(_token);
       this.tokens.push(new Token(
           +_token[0],
@@ -69,7 +69,7 @@ export class SellTokensComponent implements OnInit, OnDestroy {
 
   async sellToken(){
     console.log({tokenId: this.sellingToken.id, ethReceiver: this.ethReceiver});
-    await this.deployedDemoCrowdsale.sellToken(this.sellingToken.id, this.ethReceiver, {from: this.web3Service.getAccount()});
+    await this.deployedLOSKCrowdsale.sellToken(this.sellingToken.id, this.ethReceiver, {from: this.web3Service.getAccount()});
     this.router.navigate(["/crowdsale/vender"]);
   }
 }

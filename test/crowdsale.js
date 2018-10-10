@@ -1,10 +1,10 @@
 const { duration, increaseTime, advanceBlock } = require('./helpers/time');
 const { latestTime } = require('./helpers/latestTime');
 const expectThrow = require('./helpers/expectThrow');
-const DemoCrowdsale = artifacts.require("DemoCrowdsale");
-const DemoToken = artifacts.require("DemoToken");
+const LOSKCrowdsale = artifacts.require("LOSKCrowdsale");
+const LOSKToken = artifacts.require("LOSKToken");
 
-contract('DemoCrowdsale', async (accounts) => {
+contract('LOSKCrowdsale', async (accounts) => {
 
     let contract, tokenContract;
     let owner = accounts[0];
@@ -19,9 +19,9 @@ contract('DemoCrowdsale', async (accounts) => {
         let openingTime = Math.floor(new Date().getTime() / 1000)
    //      let openingTime = (await latestTime()) + duration.seconds(10);
         let closingTime = openingTime + duration.days(90);
-        tokenContract = await DemoToken.new('DEMO Token', 'DEMO', {from: owner});
+        tokenContract = await LOSKToken.new('LOSK Token', 'LOSK', {from: owner});
 
-        contract = await DemoCrowdsale.new(wallet, tokenContract.address, openingTime, closingTime, {from: owner});
+        contract = await LOSKCrowdsale.new(wallet, tokenContract.address, openingTime, closingTime, {from: owner});
     });
 
     describe("After Crowdsale creation", async ()  => {
@@ -51,13 +51,13 @@ contract('DemoCrowdsale', async (accounts) => {
             assert.equal(transfers.length, 1);
             tokenId = transfers[0].args._tokenId;
 
-            watcher = contract.NewDemoToken();
-            result = await contract.addToken(tokenId, 'DEMO', priceWei, {from: owner});
+            watcher = contract.NewLOSKToken();
+            result = await contract.addToken(tokenId, 'LOSK', priceWei, {from: owner});
             let newTokenEvent = await watcher.get();
             assert.equal(newTokenEvent.length, 1);
 
             assert.equal(newTokenEvent[0].args.tokenId.valueOf(), tokenId);
-            assert.equal(newTokenEvent[0].args.name.valueOf(), 'DEMO');
+            assert.equal(newTokenEvent[0].args.name.valueOf(), 'LOSK');
             assert.equal(newTokenEvent[0].args.priceWei.valueOf(), priceWei);
 
             result = await tokenContract.safeTransferFrom(owner, contract.address, tokenId, {from: owner});
@@ -71,7 +71,7 @@ contract('DemoCrowdsale', async (accounts) => {
         it("should get token minted data", async () => {
             let token = await contract.getTokenByIndex.call(0);
             assert.equal(token[0].toNumber(), tokenId);
-            assert.equal(token[1], 'DEMO');
+            assert.equal(token[1], 'LOSK');
             assert.equal(token[2].toNumber(), priceWei);
         });
     });
@@ -120,20 +120,6 @@ contract('DemoCrowdsale', async (accounts) => {
             assert.equal(hasClosed, true);
         });
         it("should transfer the token", async () => {
-
-            // let watcher = tokenContract.Transfer();
-            // let result = await tokenContract.mint({from: owner});
-            // let transfers = await watcher.get();
-            //
-            // tokenId = transfers[0].args._tokenId;
-            //
-            // result = await contract.addToken(tokenId, 'DEMO', priceWei, {from: owner});
-            // //result = await tokenContract.setApprovalForAll(contract.address, true, {from: owner});
-            // result = await tokenContract.safeTransferFrom(owner, contract.address, tokenId, {from: owner});
-            // result = await contract.buyToken(tokenId, {from: beneficiary, value: priceWei});
-            // increaseTime(duration.days(91));
-
-
             watcher = contract.TokenDelivered();
             await contract.withdrawTokens({from: beneficiary});
             let events = await watcher.get();

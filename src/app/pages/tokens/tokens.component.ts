@@ -5,7 +5,7 @@ import {tokenName} from "@angular/compiler";
 import {Token} from "../../core/shared/token.model";
 
 declare let require: any;
-const demotoken_artifacts = require('../../../../build/contracts/DemoToken.json');
+const LOSKToken_artifacts = require('../../../../build/contracts/LOSKToken.json');
 
 @Component({
   selector: 'app-tokens',
@@ -17,7 +17,7 @@ export class TokensComponent implements OnInit {
   name: string;
   symbol: string;
   address: string;
-  DemoToken: any;
+  LOSKToken: any;
   tokens: Token[];
   owner: string;
   tokenName: string;
@@ -28,16 +28,16 @@ export class TokensComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.web3Service.artifactsToContract(demotoken_artifacts)
-        .then(async (DemoTokenAbstraction) => {
-          this.DemoToken = DemoTokenAbstraction;
+    this.web3Service.artifactsToContract(LOSKToken_artifacts)
+        .then(async (LOSKTokenAbstraction) => {
+          this.LOSKToken = LOSKTokenAbstraction;
 
           try {
-            const deployedDemoToken = await this.DemoToken.deployed();
-            this.address = deployedDemoToken.address;
-            this.owner = await deployedDemoToken.owner.call();
-            this.name = await deployedDemoToken.name.call();
-            this.symbol = await deployedDemoToken.symbol.call();
+            const deployedLOSKToken = await this.LOSKToken.deployed();
+            this.address = deployedLOSKToken.address;
+            this.owner = await deployedLOSKToken.owner.call();
+            this.name = await deployedLOSKToken.name.call();
+            this.symbol = await deployedLOSKToken.symbol.call();
             this.refreshTokens();
           } catch (e) {
             console.log(e);
@@ -48,8 +48,8 @@ export class TokensComponent implements OnInit {
 
   async crearToken(){
     try{
-      const deployedDemoToken = await this.DemoToken.deployed();
-      await deployedDemoToken.mint(this.tokenName, {from: this.web3Service.getAccount()});
+      const deployedLOSKToken = await this.LOSKToken.deployed();
+      await deployedLOSKToken.mint(this.tokenName, {from: this.web3Service.getAccount()});
       this.tokenName = '';
       this.refreshTokens();
     } catch (e) {
@@ -59,12 +59,12 @@ export class TokensComponent implements OnInit {
   }
 
   async refreshTokens(){
-    const deployedDemoToken = await this.DemoToken.deployed();
-    let totalTokens = await deployedDemoToken.totalSupply.call();
+    const deployedLOSKToken = await this.LOSKToken.deployed();
+    let totalTokens = await deployedLOSKToken.totalSupply.call();
     this.tokens = [];
     for(let i=0; i<totalTokens; i++){
-      let _tokenId = await deployedDemoToken.tokenByIndex.call(i)
-      let _description = await deployedDemoToken.tokenURI.call(_tokenId);
+      let _tokenId = await deployedLOSKToken.tokenByIndex.call(i)
+      let _description = await deployedLOSKToken.tokenURI.call(_tokenId);
       this.tokens.push(new Token(_tokenId, _description));
     }
   }

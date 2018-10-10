@@ -1,6 +1,6 @@
 var DemoCrowdsale = artifacts.require("./crowdsale/DemoCrowdsale.sol");
 var CrowdsaleList = artifacts.require("./crowdsale/CrowdsaleList.sol");
-var DemoToken = artifacts.require("./token/DemoToken.sol");
+var DemoToken = artifacts.require("./token/LOSKToken.sol");
 
 const { duration } = require('../test/helpers/time');
 
