@@ -16,6 +16,7 @@ export class TokensComponent implements OnInit {
 
   name: string;
   symbol: string;
+  address: string;
   DemoToken: any;
   tokens: Token[];
   owner: string;
@@ -33,6 +34,7 @@ export class TokensComponent implements OnInit {
 
           try {
             const deployedDemoToken = await this.DemoToken.deployed();
+            this.address = deployedDemoToken.address;
             this.owner = await deployedDemoToken.owner.call();
             this.name = await deployedDemoToken.name.call();
             this.symbol = await deployedDemoToken.symbol.call();
