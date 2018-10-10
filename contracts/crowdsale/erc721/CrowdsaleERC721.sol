@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-import "../token/DemoToken.sol";
+import "../../token/erc721/DemoToken.sol";
 
 contract CrowdsaleERC721 is Ownable{
 
