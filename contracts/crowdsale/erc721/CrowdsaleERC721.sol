@@ -7,7 +7,7 @@ contract CrowdsaleERC721 is Ownable{
     using SafeMath for uint256;
 
     // The token being sold
-    DemoToken public token;
+    LOSKToken public token;
 
     // Address where funds are collected
     address public wallet;
@@ -22,7 +22,7 @@ contract CrowdsaleERC721 is Ownable{
         bool available;
     }
 
-    event NewDemoToken(uint tokenId, string name, uint256 priceWei);
+    event NewToken(uint tokenId, string name, uint256 priceWei);
 
     uint256[] public tokenArray;
     mapping(uint256 => Token) tokens;
@@ -35,7 +35,7 @@ contract CrowdsaleERC721 is Ownable{
         tokenArray.push(_tokenId);
         tokens[_tokenId] = _token;
 
-        emit NewDemoToken(_tokenId, _name, _priceWei);
+        emit NewToken(_tokenId, _name, _priceWei);
     }
 
     function getNumberOfTokens() public view returns (uint256){
@@ -66,7 +66,7 @@ contract CrowdsaleERC721 is Ownable{
      * @param _wallet Address where collected funds will be forwarded to
      * @param _token Address of the token being sold
      */
-    constructor(address _wallet, DemoToken _token) public {
+    constructor(address _wallet, LOSKToken _token) public {
         require(_wallet != address(0));
         require(_token != address(0));
 

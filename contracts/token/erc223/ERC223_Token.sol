@@ -45,6 +45,7 @@ contract ERC223Token is ERC223, ERC20 {
 
     // Function that is called when a user or another contract wants to transfer funds .
     function transfer(address _to, uint _value, bytes _data, string _custom_fallback) public returns (bool success) {
+        require(_to != address(0));
 
         if(isContract(_to)) {
             if (balanceOf(msg.sender) < _value) revert();
@@ -62,6 +63,7 @@ contract ERC223Token is ERC223, ERC20 {
 
     // Function that is called when a user or another contract wants to transfer funds .
     function transfer(address _to, uint _value, bytes _data) public returns (bool success) {
+        require(_to != address(0));
 
         if(isContract(_to)) {
             return transferToContract(_to, _value, _data);
@@ -74,6 +76,7 @@ contract ERC223Token is ERC223, ERC20 {
     // Standard function transfer similar to ERC20 transfer with no _data .
     // Added due to backwards compatibility reasons .
     function transfer(address _to, uint _value) public returns (bool success) {
+        require(_to != address(0));
 
         //standard function transfer similar to ERC20 transfer with no _data
         //added due to backwards compatibility reasons
@@ -110,7 +113,7 @@ contract ERC223Token is ERC223, ERC20 {
         if (balanceOf(_from) < _value) revert();
         balances[_from] = balanceOf(_from).sub(_value);
         balances[_to] = balanceOf(_to).add(_value);
-        emit Transfer(msg.sender, _to, _value, _data);
+        emit Transfer(_from, _to, _value, _data);
         return true;
     }
 
@@ -121,7 +124,7 @@ contract ERC223Token is ERC223, ERC20 {
         balances[_to] = balanceOf(_to).add(_value);
         ContractReceiver receiver = ContractReceiver(_to);
         receiver.tokenFallback(_from, _value, _data);
-        emit Transfer(msg.sender, _to, _value, _data);
+        emit Transfer(_from, _to, _value, _data);
         return true;
     }
 

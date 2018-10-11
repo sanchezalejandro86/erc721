@@ -247,7 +247,7 @@
           "type": "uint256"
         }
       ],
-      "name": "NewDemoToken",
+      "name": "NewToken",
       "type": "event"
     },
     {
@@ -326,9 +326,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.24;\n\nimport \"./CrowdsaleERC721.sol\";\nimport \"zeppelin-solidity/contracts/math/SafeMath.sol\";\n\n\n/**\n * @title TimedCrowdsale\n * @dev Crowdsale accepting contributions only within a time frame.\n */\ncontract TimedCrowdsaleERC721 is CrowdsaleERC721 {\n    using SafeMath for uint256;\n\n    uint256 public openingTime;\n    uint256 public closingTime;\n\n    /**\n     * @dev Reverts if not in crowdsale time range.\n     */\n    modifier onlyWhileOpen {\n        // solium-disable-next-line security/no-block-members\n        require(block.timestamp >= openingTime && block.timestamp <= closingTime);\n        _;\n    }\n\n    /**\n     * @dev Constructor, takes crowdsale opening and closing times.\n     * @param _openingTime Crowdsale opening time\n     * @param _closingTime Crowdsale closing time\n     */\n    constructor(uint256 _openingTime, uint256 _closingTime) public {\n        // solium-disable-next-line security/no-block-members\n        require(_openingTime >= block.timestamp);\n        require(_closingTime >= _openingTime);\n\n        openingTime = _openingTime;\n        closingTime = _closingTime;\n    }\n\n    /**\n     * @dev Checks whether the period in which the crowdsale is open has already elapsed.\n     * @return Whether crowdsale period has elapsed\n     */\n    function hasClosed() public view returns (bool) {\n        // solium-disable-next-line security/no-block-members\n        return block.timestamp > closingTime;\n    }\n\n    /**\n     * @dev Extend parent behavior requiring to be within contributing period\n     * @param _beneficiary Token purchaser\n     * @param _weiAmount Amount of wei contributed\n     */\n    function _preValidatePurchase(\n        address _beneficiary,\n        uint256 _weiAmount,\n        uint256 _tokenId\n    )\n    internal\n    onlyWhileOpen\n    {\n        super._preValidatePurchase(_beneficiary, _weiAmount, _tokenId);\n    }\n\n}\n",
-  "sourcePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/TimedCrowdsaleERC721.sol",
+  "sourcePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/TimedCrowdsaleERC721.sol",
   "ast": {
-    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/TimedCrowdsaleERC721.sol",
+    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/TimedCrowdsaleERC721.sol",
     "exportedSymbols": {
       "TimedCrowdsaleERC721": [
         663
@@ -349,7 +349,7 @@
         "src": "0:24:3"
       },
       {
-        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/CrowdsaleERC721.sol",
+        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/CrowdsaleERC721.sol",
         "file": "./CrowdsaleERC721.sol",
         "id": 576,
         "nodeType": "ImportDirective",
@@ -1446,7 +1446,7 @@
     "src": "0:1875:3"
   },
   "legacyAST": {
-    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/TimedCrowdsaleERC721.sol",
+    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/TimedCrowdsaleERC721.sol",
     "exportedSymbols": {
       "TimedCrowdsaleERC721": [
         663
@@ -1467,7 +1467,7 @@
         "src": "0:24:3"
       },
       {
-        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/CrowdsaleERC721.sol",
+        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/CrowdsaleERC721.sol",
         "file": "./CrowdsaleERC721.sol",
         "id": 576,
         "nodeType": "ImportDirective",
@@ -2569,5 +2569,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-10-05T14:54:51.670Z"
+  "updatedAt": "2018-10-11T13:48:51.260Z"
 }

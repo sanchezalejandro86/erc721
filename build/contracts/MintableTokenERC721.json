@@ -550,9 +550,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.24;\n\nimport \"zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol\";\nimport \"zeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/**\n * @title Mintable token\n * @dev Simple ERC20 Token example, with mintable token creation\n * Based on code by TokenMarketNet: https://github.com/TokenMarketNet/ico/blob/master/contracts/MintableToken.sol\n */\ncontract MintableTokenERC721 is ERC721Token, Ownable {\n    event Mint(address indexed to, uint256 tokenId);\n    event MintFinished();\n\n    bool public mintingFinished = false;\n\n\n    modifier canMint() {\n        require(!mintingFinished);\n        _;\n    }\n\n    modifier hasMintPermission() {\n        require(msg.sender == owner);\n        _;\n    }\n\n    /**\n     * @dev Function to mint tokens\n     * @return A boolean that indicates if the operation was successful.\n     */\n    function mint(string uri)\n    public\n    hasMintPermission\n    canMint\n    returns (uint256)\n    {\n        uint256 _tokenId = random();\n        super._mint(msg.sender, _tokenId);\n        _setTokenURI(_tokenId, uri);\n        emit Mint(msg.sender, _tokenId);\n        return _tokenId;\n    }\n\n\n    /**\n     * @dev Function to stop minting new tokens.\n     * @return True if the operation was successful.\n     */\n    function finishMinting() public onlyOwner canMint returns (bool) {\n        mintingFinished = true;\n        emit MintFinished();\n        return true;\n    }\n\n    function random() private view returns (uint256) {\n        return uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp, block.difficulty)));\n    }\n}\n",
-  "sourcePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/token/MintableTokenERC721.sol",
+  "sourcePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/token/erc721/MintableTokenERC721.sol",
   "ast": {
-    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/token/MintableTokenERC721.sol",
+    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/token/erc721/MintableTokenERC721.sol",
     "exportedSymbols": {
       "MintableTokenERC721": [
         857
@@ -2001,7 +2001,7 @@
     "src": "0:1574:5"
   },
   "legacyAST": {
-    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/token/MintableTokenERC721.sol",
+    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/token/erc721/MintableTokenERC721.sol",
     "exportedSymbols": {
       "MintableTokenERC721": [
         857
@@ -3455,5 +3455,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-10-05T14:54:51.673Z"
+  "updatedAt": "2018-10-11T13:48:51.271Z"
 }

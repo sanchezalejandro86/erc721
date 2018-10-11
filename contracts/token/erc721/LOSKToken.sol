@@ -3,7 +3,7 @@ pragma solidity ^0.4.24;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./MintableTokenERC721.sol";
 
-contract DemoToken is MintableTokenERC721{
+contract LOSKToken is MintableTokenERC721{
 
     uint256 lastId = 1 ** 5;
 

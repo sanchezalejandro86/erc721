@@ -1,5 +1,5 @@
-var DemoToken = artifacts.require("./token/LOSKToken.sol");
+var LOSKToken = artifacts.require("./token/erc721/LOSKToken.sol");
 
 module.exports = function(deployer) {
-    deployer.deploy(DemoToken, 'Demo', 'DEMO');
+    deployer.deploy(LOSKToken, 'Demo', 'DEMO');
 };

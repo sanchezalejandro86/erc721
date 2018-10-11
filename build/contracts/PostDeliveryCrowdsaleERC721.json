@@ -300,7 +300,7 @@
           "type": "uint256"
         }
       ],
-      "name": "NewDemoToken",
+      "name": "NewToken",
       "type": "event"
     },
     {
@@ -374,9 +374,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.24;\n\nimport \"./TimedCrowdsaleERC721.sol\";\n\n\n/**\n * @title PostDeliveryCrowdsale\n * @dev Crowdsale that locks tokens from withdrawal until it ends.\n */\ncontract PostDeliveryCrowdsaleERC721 is TimedCrowdsaleERC721 {\n    using SafeMath for uint256;\n\n    mapping(address => uint256[]) public balances;\n\n    address[] beneficiaries;\n\n    bool public released = false;\n\n    event TokenDelivered(address to, uint256 tokenId);\n\n\n    /**\n     * @dev Withdraw tokens only after crowdsale ends.\n     */\n    function withdrawTokens() public onlyOwner{\n        require(hasClosed(), \"El Crowdsale no está cerrado\");\n        require(!released, \"Los tokens ya fueron liberados\");\n\n        for (uint i=0; i<beneficiaries.length; i++) {\n            uint256[] storage _tokenIds = balances[beneficiaries[i]];\n\n            for (uint j=0; j<_tokenIds.length; j++) {\n                _deliverTokens(beneficiaries[i], _tokenIds[j]);\n                emit TokenDelivered(beneficiaries[i], _tokenIds[j]);\n            }\n        }\n\n        released = true;\n    }\n\n    /**\n     * @dev Overrides parent by storing balances instead of issuing tokens right away.\n     * @param _beneficiary Token purchaser\n     * @param _tokenId Id of the token purchased\n     */\n    function _processPurchase(\n        address _beneficiary,\n        uint256 _tokenId\n    )\n    internal\n    {\n        if(balances[_beneficiary].length == 0){\n            beneficiaries.push(_beneficiary);\n        }\n        balances[_beneficiary].push(_tokenId);\n    }\n\n}\n",
-  "sourcePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol",
+  "sourcePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/PostDeliveryCrowdsaleERC721.sol",
   "ast": {
-    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol",
+    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/PostDeliveryCrowdsaleERC721.sol",
     "exportedSymbols": {
       "PostDeliveryCrowdsaleERC721": [
         573
@@ -397,7 +397,7 @@
         "src": "0:24:2"
       },
       {
-        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/TimedCrowdsaleERC721.sol",
+        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/TimedCrowdsaleERC721.sol",
         "file": "./TimedCrowdsaleERC721.sol",
         "id": 445,
         "nodeType": "ImportDirective",
@@ -2027,7 +2027,7 @@
     "src": "0:1522:2"
   },
   "legacyAST": {
-    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/PostDeliveryCrowdsaleERC721.sol",
+    "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/PostDeliveryCrowdsaleERC721.sol",
     "exportedSymbols": {
       "PostDeliveryCrowdsaleERC721": [
         573
@@ -2048,7 +2048,7 @@
         "src": "0:24:2"
       },
       {
-        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/TimedCrowdsaleERC721.sol",
+        "absolutePath": "/home/alejandro/workspace/espinlabs/erc721/contracts/crowdsale/erc721/TimedCrowdsaleERC721.sol",
         "file": "./TimedCrowdsaleERC721.sol",
         "id": 445,
         "nodeType": "ImportDirective",
@@ -3683,5 +3683,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-10-05T14:54:51.657Z"
+  "updatedAt": "2018-10-11T13:48:51.257Z"
 }
